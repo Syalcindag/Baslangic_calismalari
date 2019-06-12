@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <h:form>
+        <h:dataTable value="#{bean.addresses}" var="myvariable"
+border="1" cellpadding="5" cellspacing="0">
+    <!-- Her h:column bloğu bir döngüyü ifade eder. Tablodaki o column(field) bitince diğer column'a geçer--> 
+<h:column>
+<f:facet name="header">First Name</f:facet>
+#{myvariable.isim}
+</h:column>
+ 
+    <h:column>
+ <f:facet name="header">Last Name</f:facet>
+#{myvariable.soyisim}
+ </h:column>
+ 
+    <h:column>
+ <f:facet name="header">Street</f:facet>
+#{myvariable.sehir}
+ </h:column>
+ <h:column>
+ <f:facet name="header">City</f:facet>
+ <h:inputText value="#{myvariable.sokak}"/>
+
+ </h:column>
+        </h:dataTable>
+        </h:form>
+    </h:body>
+</html>

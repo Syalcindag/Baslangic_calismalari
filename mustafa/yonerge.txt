@@ -1,0 +1,5 @@
+Ogrenci ya da Ogretim gorevlisi olarak giris yapmak icin oncelikle Yonetici menusune girip sifreyi 1453 olarak giriniz.
+Buradan ekleme silme duzenleme gibi islemlerinizi halledebilirsiniz.
+Sistem size 4 haneli gecici sifre olusturacaktır. Bu sifreyi giris yaparken kullanacaksiniz.
+Sonrasinda sisteme ogrenci ya da ogretim gorevlisi olarak giris yapip duzenle kismindan sifrenizi degistirebilirsiniz.
+O zamana kadar gecici sifrenizi unutmayiniz!!!

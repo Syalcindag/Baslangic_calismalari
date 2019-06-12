@@ -1,0 +1,33 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 22, 2018, 5:28:23 PM
+    Author     : Sefa
+*/
+.headerx{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+color:#33ccff;
+z-index:7;
+font-family:verdana;
+-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+
+}
+.header{
+position:fixed;
+width:100%;
+height:100%;
+background:#33ccff;
+top:0;
+left:0;
+color:red;
+z-index:7;
+font-family:verdana;
+
+}

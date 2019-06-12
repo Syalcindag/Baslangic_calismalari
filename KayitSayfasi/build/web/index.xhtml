@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+     <h:body style="background-image: url(resources/images/kapi1.jpg)">
+        
+        <div id="üstdiv" style="width: 100%; height: 80px; background-color: #336600">
+            
+            <h:graphicImage value="resources/images/analogo.png" width="160px" height="160px" style="float: left"></h:graphicImage>
+           
+               <p style="color: #ffffff; float: left; margin: auto">
+                    <font size="15" >
+                       İSTANBUL ÜNİVERSİTESİ MEZUN PLATFORMU 
+                    </font>
+                   </p>
+        </div>
+        <div style="width: 100%; height: 80px; background-color: #ffcc00">
+          
+        </div>
+        
+        <div id="popup"  style="height: 450px;background-color: #cccccc; width: 300px;
+            position: initial; bottom: 50%; border: 2px solid;opacity: 0.87; padding: 10px;margin: auto; border-radius">
+                 
+    <form>
+        
+        <div >
+            <h1>Kayıt</h1>
+        </div>
+
+        <div>
+            Adı : <h:inputText id="FirstNameInputText" style="float: right" /> <br/><br/>
+             Soyadı:
+            <h:inputText id="FirstNameInputText" style="float: right" /> <br/><br/>
+            Kullanıcı Adı:
+            <h:inputText id="FirstNameInputText" style="float: right" /> <br/><br/>
+            Şifre        :
+            <h:inputText id="PasswordInputText" style="float: right" /> <br/><br/>
+              Mail :        
+            <h:inputText id="MailInputText" style="float: right" /> <br/><br/>
+            Bay:
+            <input type="checkbox" name="Bay" value="ON" checked="checked" />
+            Bayan:
+            <input type="checkbox" name="Bayan" value="ON" /> <br/><br/>
+            
+            
+            <h:commandButton value="Kayıt"  style="width: 70px"/>
+            
+            <p>
+                Tüm boşlukları doldurunuz.
+            </p>
+             <h:commandButton value="Giriş Yap"  style="width: 70px; icon: url(resources/images/1.png)"/>
+            <!-- <h:commandButton value="Giriş" action=""/>
+       -->
+     
+    </div>
+    
+    </form>
+            
+            
+        </div>
+    
+
+       
+      
+       
+    </h:body>
+</html>
+
