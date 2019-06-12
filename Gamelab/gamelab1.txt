@@ -1,0 +1,214 @@
+package com.ngdroidapp;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+import java.io.UTFDataFormatException;
+
+import istanbul.gamelab.ngdroid.base.BaseCanvas;
+import istanbul.gamelab.ngdroid.util.Log;
+import istanbul.gamelab.ngdroid.util.Utils;
+
+
+/**
+ * Created by noyan on 24.06.2016.
+ * Nitra Games Ltd.
+ */
+
+
+public class GameCanvas extends BaseCanvas {
+
+
+
+
+    public GameCanvas(NgApp ngApp) {
+        super(ngApp);
+    }
+    private int dusmanGemiHizi;
+    private int oyuncuGemiHizi;
+    private int dusmanGemiY, dusmanGemiX, dusmanGemiSonNokta, dusmanMermiX, dusmanMermiY;
+    private Bitmap oyunArkaplan;
+    private Bitmap dusmanGemi;
+    private Bitmap oyuncuGemi;
+    private int oyuncuGemiY, oyuncuGemiX, oyuncuGemiSonNokta, oyuncuMermiX, oyuncuMermiY;
+    private boolean oyuncuSaldirisi = false;
+    private boolean dusmansaldirisi = false;
+    private Bitmap oyuncuAtes;
+    private Bitmap dusmanAtes;
+    private boolean dusmanMermiDogdu = false;
+    private boolean oyuncuMermiDogdu = false;
+
+
+
+
+    public void setup() {                         // bir defa çalýsýr
+        oyunArkaplan = Utils.loadImage(root, "map.png");
+        dusmanGemi = Utils.loadImage(root, "animasyon/ship_1_1.png");
+        dusmanGemiHizi = 10;
+        dusmanGemiY = 180;
+        dusmanGemiX = 170;
+        dusmanGemiSonNokta = 1250;
+        oyuncuGemi = Utils.loadImage(root, "animasyon/ship_1_1.png");
+         oyuncuGemiX = 170;
+        oyuncuGemiY = 1250;
+        oyuncuGemiHizi = 10;
+        oyuncuGemiSonNokta = 180;
+        oyuncuAtes = Utils.loadImage(root, "kirmizi_ates.png");
+        dusmanAtes = Utils.loadImage(root, "mavi_ates.png");
+
+
+    }
+
+    public void update() {
+       // LOGI("update");
+        dusmanGemiIlerle();
+        oyuncuGemiIlerle();
+        menzilTesti();
+    }
+
+
+
+
+    public void draw(Canvas canvas) {
+
+        arkaplanCiz(canvas);
+        dusmanGemiCiz(canvas);
+        oyuncuGemiCiz(canvas);
+        oyuncuMermiCiz(canvas);
+        dusmanMermiCiz(canvas);
+        oyuncuMermiIlerlet(canvas);
+        dusmanMermiIlerlet(canvas);
+    }
+
+    private void dusmanMermiIlerlet(Canvas canvas) {
+        if(dusmanMermiDogdu == false) {
+            dusmanMermiX = dusmanGemiX + dusmanGemi.getWidth() / 2 - dusmanAtes.getWidth() / 2;
+            dusmanMermiY = dusmanGemiY + dusmanGemi.getHeight() - dusmanAtes.getHeight() / 2;
+        }
+        else
+            dusmanMermiY += 10;
+    }
+
+    private void oyuncuMermiIlerlet(Canvas canvas) {
+        if(oyuncuMermiDogdu == false ) {
+            oyuncuMermiX = oyuncuGemiX + oyuncuGemi.getWidth() / 2 - oyuncuAtes.getWidth() / 2;
+            oyuncuMermiY = oyuncuGemiY - oyuncuGemi.getWidth() / 2 + oyuncuAtes.getHeight() / 2;
+        }
+        else
+            oyuncuMermiY -= 10;
+        }
+
+
+    private void dusmanMermiCiz(Canvas canvas) {
+        if(dusmansaldirisi == false) return;
+        canvas.drawBitmap(dusmanAtes, dusmanMermiX, dusmanMermiY, null);
+    }
+
+    private void oyuncuMermiCiz(Canvas canvas) {
+        if(oyuncuSaldirisi == false) return;
+        canvas.drawBitmap(oyuncuAtes, oyuncuMermiX, oyuncuMermiY, null);
+
+    }
+
+    private void menzilTesti() {
+        if(Math.abs(oyuncuGemiY - dusmanGemiY)  <= 400){    // Math.abs --> mutlak deger
+            oyuncuSaldirisi = true;
+            dusmansaldirisi = true;
+            dusmanMermiDogdu = true;
+            oyuncuMermiDogdu = true;
+
+        }
+    }
+
+    private void OyuncuMermiUret(){
+
+    }
+
+
+    private void dusmanMermiUret(){
+
+    }
+    private void oyuncuGemiCiz(Canvas canvas) {
+
+        canvas.save();
+        canvas.rotate(180, oyuncuGemiX + oyuncuGemi.getWidth() / 2, oyuncuGemiY + oyuncuGemi.getHeight() / 2);
+        canvas.drawBitmap(oyuncuGemi, oyuncuGemiX, oyuncuGemiY, null);
+        canvas.restore();
+    }
+    private void oyuncuGemiIlerle() {
+        if(oyuncuGemiY >= oyuncuGemiSonNokta && oyuncuSaldirisi == false){
+            oyuncuGemiY = oyuncuGemiY - oyuncuGemiHizi;
+        }
+    }
+
+    private void dusmanGemiCiz(Canvas canvas) {
+        canvas.drawBitmap(dusmanGemi, dusmanGemiX, dusmanGemiY, null);
+    }
+    private void dusmanGemiIlerle() {
+
+        if(dusmanGemiY <= dusmanGemiSonNokta && dusmansaldirisi == false){
+            dusmanGemiY = dusmanGemiY + dusmanGemiHizi;
+        }
+    }
+
+    private void arkaplanCiz(Canvas canvas) {
+        canvas.drawBitmap(oyunArkaplan, 0, 0, null );
+
+    }
+
+    public void keyPressed(int key) {
+
+    }
+
+    public void keyReleased(int key) {
+
+    }
+
+    public boolean backPressed() {
+        return true;
+    }
+
+    public void surfaceChanged(int width, int height) {
+
+    }
+
+    public void surfaceCreated() {
+
+    }
+
+    public void surfaceDestroyed() {
+
+    }
+
+    public void touchDown(int x, int y, int id) {
+    }
+
+    public void touchMove(int x, int y, int id) {
+    }
+
+    public void touchUp(int x, int y, int id) {
+    }
+
+
+    public void pause() {
+
+    }
+
+
+    public void resume() {
+
+    }
+
+
+    public void reloadTextures() {
+
+    }
+
+
+    public void showNotify() {
+    }
+
+    public void hideNotify() {
+    }
+
+}

@@ -1,0 +1,123 @@
+-------------------Tanýmlamalar-----------------------------------------------------------------------------
+
+//gemi upgrade ozellýkler
+    private int gemiCan[], gemiHiz[], gemiGuc[];
+
+------------------------------------------------------------------------------------------------------------
+
+
+-------------------setup---------------------------------------------------------------------------------------------------
+
+	//gemiCanlari
+        gemiCan = new int[4];
+        gemiCan[0] = 100;
+        gemiCan[1] = 130;
+        gemiCan[2] = 170;
+        gemiCan[3] = 220;
+        //gemiHýzlarý
+        gemiHiz = new int[4];
+        gemiHiz[0] = 10;
+        gemiHiz[1] = 10;
+        gemiHiz[2] = 10;
+        gemiHiz[3] = 10;
+        //gemiGucleri
+        gemiGuc = new int[4];
+        gemiGuc[0] = 25;
+        gemiGuc[1] = 25;
+        gemiGuc[2] = 25;
+        gemiGuc[3] = 25;
+
+----------------------------------------------------------------------------------------------------------------------
+
+-----------------------oyuncuGemiUret--------------------------------------------------------------------------------
+
+  	oyuncuYeniGemi = new Vector<Integer>();
+        oyuncuGemisiDogumX = 282 + (yon * 514);
+        oyuncuYeniGemi.add(gemiTuru);
+        oyuncuYeniGemi.add(0);
+        oyuncuYeniGemi.add(oyuncuGemisiDogumX);
+        oyuncuYeniGemi.add(oyuncuGemisiDogumY);
+        oyuncuYeniGemi.add(gemiCan[gemiTuru]); // zzzzzz
+        oyuncuYeniGemi.add(gemiHiz[gemiTuru]);
+        oyuncuYeniGemi.add(0);
+        oyuncuYeniGemi.add(yon);
+        oyuncuYeniGemi.add(gemiFiyat[gemiTuru]);
+        oyuncuYeniGemi.add(puanSayý[gemiTuru]);
+        oyuncuYeniGemi.add(30);//ates sabiti //*
+        oyuncuYeniGemi.add(30);//***GEMIOZELLIGI_ATESSAYACI
+        oyuncuGemileri.add(oyuncuYeniGemi);
+        root.sesEfekti.play(root.sesEfekleri[2]);
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------oyuncuMermiIlerlet-------------------------------------------------------------------------------
+
+ 	for (oMermiIler_i = 0; oMermiIler_i < oyuncuMermileri.size(); oMermiIler_i++) {
+            //eðer menzilini geçerse mermiyi yok et
+            if (Math.abs(oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_DOGY) -
+                    oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_POSY)) > mermiMenzil) {
+                oyuncuMermileri.remove(oMermiIler_i);
+            } else {
+                //mermiyi ilerlet
+                oyuncuMermileri.get(oMermiIler_i).set(MERMIOZELLIGI_POSY,
+                        oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_POSY) -
+                                oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_HIZ));
+                for (dMermiIler_i = 0; dMermiIler_i < dusmanGemileri.size(); dMermiIler_i++) {
+                    if (oyuncuMermileri.isEmpty())
+                        break;
+                    //vurulunca mermiyi ve düþmaný yok et
+                    if (oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_POSY) <=
+                            dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_POSY) +
+                                    gemiAnimasyonlari[dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_TUR)][0].getHeight() / 2
+                            && oyuncuMermileri.get(oMermiIler_i).get(MERMIOZELLIGI_YON) == dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_YON)) {
+                        if (dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_CAN) <=0) {
+                            patlamaUret(dusmanGemileri.get(dMermiIler_i));
+                            toplamPara += dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_DEGER);
+                            toplamPuan += dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_PUAN);
+                            dusmanGemileri.remove(dMermiIler_i);
+                        } else {
+                            dusmanGemileri.get(dMermiIler_i).set(GEMIOZELLIGI_CAN, dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_CAN) - gemiGuc[oyuncuGemileri.get(dmi_j).get(GEMIOZELLIGI_TUR)]);
+                            if (dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_CAN) <=0) {
+                                patlamaUret(dusmanGemileri.get(dMermiIler_i));
+                                toplamPara += dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_DEGER);
+                                toplamPuan += dusmanGemileri.get(dMermiIler_i).get(GEMIOZELLIGI_PUAN);
+                                dusmanGemileri.remove(dMermiIler_i);
+                            }
+                        }
+                        oyuncuMermileri.remove(oMermiIler_i);
+                        break;
+                    }
+                }
+            }
+        }
+
+----------------------------------------------------------------------------------------------------------------
+
+-------------------------SlotOzellikCiz-------------------------------------------------------------------------
+
+
+	if (slotBayrak == 1) {
+            if(slotAcikMi) {
+                slotOzellikUret(gemiCan[slotBayrak - 1], gemiHiz[slotBayrak - 1], gemiGuc[slotBayrak - 1]);
+            }
+        }
+        if (slotBayrak == 2) {
+            if(slotAcikMi) {
+                slotOzellikUret(gemiCan[slotBayrak - 1], gemiHiz[slotBayrak - 1], gemiGuc[slotBayrak - 1]);
+            }
+        }
+        if(slotBayrak == 3) {
+            if(slotAcikMi) {
+                slotOzellikUret(gemiCan[slotBayrak - 1], gemiHiz[slotBayrak - 1], gemiGuc[slotBayrak - 1]);
+            }
+        }
+        if(slotBayrak == 4) {
+            if(slotAcikMi) {
+                slotOzellikUret(gemiCan[slotBayrak - 1], gemiHiz[slotBayrak - 1], gemiGuc[slotBayrak - 1]);
+            }
+        }
+
+
+-------------------------------------------------------------------------------------------------------------

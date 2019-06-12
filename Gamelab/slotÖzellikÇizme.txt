@@ -1,0 +1,148 @@
+------Tanımlamalar------
+
+    private Bitmap slotOzellikCerceve, slotOzellikCan, slotOzellikHiz, slotOzellikGuc;              
+    private int slotOzellikCerceveX, slotOzellikCerceveY, slotOzellikCanX, slotOzellikCanY, slotOzellikHizX, slotOzellikHizY, slotOzellikGucX, slotOzellikGucY;
+    private int slotBayrak;
+    private boolean slotAcikMi = true;
+    private int bekleme = 0;
+    private long baslangic = 0, bitis = 0;
+	
+	
+--------setup----------------
+
+        //region Gemi Özellik
+        slotOzellikCerceve = Utils.loadImage(root, "gemi_ozellik_arkaplan.png");            
+        slotOzellikCan = Utils.loadImage(root, "can_icon.png");
+        slotOzellikHiz = Utils.loadImage(root, "hedef_icon.png");
+        slotOzellikGuc = Utils.loadImage(root, "dayaniklilik_icon.png");
+        //endregion Gemi Özellik	
+
+
+---------update---------------
+
+     slotOzellikCizimSuresi(); 
+
+--------fonksiyon-------------//update 'in altına kopyala
+
+	private void slotOzellikCizimSuresi() {                                                                   
+        bekleme++;
+        if(bekleme <= 15) {
+            slotAcikMi = true;
+        } else {
+            slotAcikMi = false;
+
+        }
+    }
+	
+--------draw---------------------
+
+ slotOzellikCiz();
+
+
+
+-------fonksiyon2----------------//draw 'in altına kopyala
+
+    private void slotOzellikCiz() {                                                                 //Hangi gemi secildiyse o geminin özelliklerini yazdıracak
+                                                                                                    
+        if (slotBayrak == 1) {
+            if(slotAcikMi) {
+                slotOzellikUret(200, 100, 50);
+            }
+        }
+        if (slotBayrak == 2) {
+            if(slotAcikMi) {
+                slotOzellikUret(150, 75, 25);
+            }
+        }
+        if(slotBayrak == 3) {
+            if(slotAcikMi) {
+                slotOzellikUret(125, 50, 20);
+            }
+        }
+        if(slotBayrak == 4) {
+            if(slotAcikMi) {
+                slotOzellikUret(100, 40, 10);
+            }
+        }
+    }
+ 
+ 
+ 
+ --------------------fonksiyon3 ----------------------//slotOzellikCiz 'in altına kopyala
+ 
+    private void slotOzellikUret(int can, int hiz, int guc) {                              //Ozellik cercevesini cizme icin kullanılan fonksiyon
+                                                                                                    
+        canvas.drawBitmap(slotOzellikCerceve, slotOzellikCerceveX, slotOzellikCerceveY, null);
+        canvas.drawBitmap(slotOzellikCan, slotOzellikCanX, slotOzellikCanY, null);
+        canvas.drawText("" + can + "", slotOzellikCanX + 60, slotOzellikCanY + 40, renk);
+        canvas.drawBitmap(slotOzellikHiz, slotOzellikHizX, slotOzellikHizY, null);
+        canvas.drawText("" + hiz + "", slotOzellikHizX + 60, slotOzellikHizY + 40, renk);
+        canvas.drawBitmap(slotOzellikGuc, slotOzellikGucX, slotOzellikGucY, null);
+        canvas.drawText("" + guc + "", slotOzellikGucX + 60, slotOzellikGucY + 40, renk);
+    }
+	
+	
+--------------------fonksiyon4 ------------------------//slotKontrol fonksiyonunun altona kopyala
+
+	private void slotOzellikKontrol(int x, int y) {                                                 //Gemilerin Özelliklerini belirlemek için tıklanılan alan kontrolu
+                                                                                                    
+
+        if (x > 15 && x < 270 && y > 1700 && y < 1900) {
+            //birinci slot
+            slotOzellikKontrolUret(0, 1526, 42, 1542, 42, 1594, 42, 1643, 1);
+            bekleme = 0;
+
+
+        }
+        if (x > 280 && x < 535 && y > 1700 && y < 1900) {
+            //ikinci slot
+            slotOzellikKontrolUret(0 + slotOzellikCerceve.getWidth() + 20, 1526, 42 + slotOzellikCerceve.getWidth(), 1542, 42 + slotOzellikCerceve.getWidth(), 1594, 42 + slotOzellikCerceve.getWidth(), 1642, 2);
+            bekleme = 0;
+
+        }
+        if (x > 550 && x < 805 && y > 1700 && y < 1900) {
+            //üçüncü slot
+            slotOzellikKontrolUret(2 * slotOzellikCerceve.getWidth() + 30, 1526, 48 + 2 * slotOzellikCerceve.getWidth(), 1542, 52 + 2 * slotOzellikCerceve.getWidth(), 1594, 52 + 2 * slotOzellikCerceve.getWidth(), 1643, 3);
+            bekleme = 0;
+
+        }
+        if (x > 820 && x < 1075 && y > 1700 && y < 1900) {
+            //dorduncu slot
+            slotOzellikKontrolUret(3 * slotOzellikCerceve.getWidth() + 45, 1526, 52 + 3 * slotOzellikCerceve.getWidth(), 1542, 52 + 3 * slotOzellikCerceve.getWidth(), 1594, 52 + 3 * slotOzellikCerceve.getWidth(), 1643, 4);
+            bekleme = 0;
+
+        }
+
+    }
+	
+	
+--------------fonksiyon5---------------------------//slotOzellikKontrol 'ün altına kopyala
+
+	private void slotOzellikKontrolUret(int cerceveX, int cerceveY, int canX, int canY, int hizX, int hizY, int gucX, int gucY, int bayrak) {  // Bu fonksiyon ile gemilerin özelliklerinin hangi konumda çıkacagı konumu belirliyoruz.
+        slotOzellikCerceveX = cerceveX;                                                                                                         //bysefa
+        slotOzellikCerceveY = cerceveY;
+        slotOzellikCanX = canX;
+        slotOzellikCanY = canY;
+        slotOzellikHizX = hizX;
+        slotOzellikHizY = hizY;
+        slotOzellikGucX = gucX;
+        slotOzellikGucY = gucY;
+        slotBayrak = bayrak;
+    }
+	
+	
+-------------------touchUp-----------------------//Eski hali düzenlenecek
+
+		bitis = System.currentTimeMillis();  //basılı tutulup tutulmadıgını kontrol etmek için bitis zamanını tutuyoruz 
+        if(bitis - baslangic <= 1000){		 //1 saniye den fazla basılı tutulursa özellikler gösterilecek
+            slotKontrolu(x, y);        
+        } else {
+            slotOzellikKontrol(x, y);                                                                   
+        }
+	
+	
+-----------------touchdown-----------------------
+  
+     baslangic = System.currentTimeMillis();   //basılı tutulup tutulmadıgını kontrol etmek için baslangıc zamanını tutuyoruz  
+	
+	 

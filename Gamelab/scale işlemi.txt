@@ -1,0 +1,127 @@
+
+			***GameKanvas***
+
+--1)-------------slotKontrolu() fonkisyonunu içerisiný attýklarým ile degiþtirin--------------
+
+ 
+        if (x > root.xOranla(15) && x < root.xOranla(270) && y > root.yOranla(1700) && y < root.yOranla(1900) && toplamPara >= gemiFiyat[0]) {
+            Log.i("GC", "Basildi");
+            oyuncuGemiUret(0);
+            toplamPara -= gemiFiyat[0];
+            //dusmanGemiUret(0);
+        }
+
+        if (x > root.xOranla(280) && x < root.xOranla(535) && y > root.yOranla(1700) && y < root.yOranla(1900) && toplamPara >= gemiFiyat[1]) {
+            oyuncuGemiUret(1);
+            toplamPara -= gemiFiyat[1];
+            //dusmanGemiUret(1);
+        }
+
+        if (x > root.xOranla(550) && x < root.xOranla(805) && y > root.yOranla(1700) && y < root.yOranla(1900) && toplamPara >= gemiFiyat[2]) {
+            oyuncuGemiUret(2);
+            toplamPara -= gemiFiyat[2];
+            // dusmanGemiUret(2);
+        }
+
+        if (x > root.xOranla(820) && x < root.xOranla(1075) && y > root.yOranla(1700) && y < root.yOranla(1900) && toplamPara >= gemiFiyat[3]) {
+            oyuncuGemiUret(3);
+            toplamPara -= gemiFiyat[3];
+            // dusmanGemiUret(3);
+        }
+
+
+-----------------------------------------------------------------------------------------------
+
+
+--2)------------------slotOzellikKontrol()  fonksiyonunun içerisini de bunlar ile dgiþtirin--------------------
+
+
+        if (x > root.xOranla(15) && x < root.xOranla(270) && y > root.yOranla(1700) && y < root.yOranla(1900)) {
+            //birinci slot
+            slotOzellikKontrolUret(0, 1526, 42, 1542, 42, 1594, 42, 1643, 1);
+            bekleme = 0;
+
+
+        }
+        if (x > root.xOranla(280) && x < root.xOranla(535) && y > root.yOranla(1700) && y <root.yOranla(1900)) {
+            //ikinci slot
+            slotOzellikKontrolUret(0 + root.slotOzellikCerceve.getWidth() + 20, 1526, 42 + root.slotOzellikCerceve.getWidth(), 1542, 42 + root.slotOzellikCerceve.getWidth(), 1594, 42 + root.slotOzellikCerceve.getWidth(), 1642, 2);
+            bekleme = 0;
+
+        }
+        if (x > root.xOranla(550) && x < root.xOranla(805) && y > root.yOranla(1700) && y <root.yOranla(1900)) {
+            //üçüncü slot
+            slotOzellikKontrolUret(2 * root.slotOzellikCerceve.getWidth() + 30, 1526, 48 + 2 * root.slotOzellikCerceve.getWidth(), 1542, 52 + 2 * root.slotOzellikCerceve.getWidth(), 1594, 52 + 2 * root.slotOzellikCerceve.getWidth(), 1643, 3);
+            bekleme = 0;
+
+        }
+        if (x > root.xOranla(820) && x < root.xOranla(1075) && y > root.yOranla(1700) && y <root.yOranla(1900)) {
+            //dorduncu slot
+            slotOzellikKontrolUret(3 * root.slotOzellikCerceve.getWidth() + 45, 1526, 52 + 3 * root.slotOzellikCerceve.getWidth(), 1542, 52 + 3 * root.slotOzellikCerceve.getWidth(), 1594, 52 + 3 * root.slotOzellikCerceve.getWidth(), 1643, 4);
+            bekleme = 0;
+
+        }
+
+
+----------------------------------------------------------------------------------------------------------------
+
+
+--3)------------touchUp()  kýsmýnda baslangic = 70 yazan kýsmýn ustundeki 2 if kosulunu bu sekilde degiþtirin---------------------------
+
+
+
+       if (x > root.xOranla(150)  && x < root.xOranla(380) && y > root.yOranla(1215) && y < root.yOranla(1480)) {
+            yon = 0;
+            platformSayaci = 0;
+            platformCizOnay = true;
+
+        }
+        if (x > root.xOranla(700) && x < root.xOranla(880) && y > root.yOranla(1210) && y < root.yOranla(1480)) {
+            yon = 1;
+            platformSayaci = 0;
+            platformCizOnay = true;
+        }
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+				***RehberKanvas***
+
+--1)---------------------------draw() icerisini bu sekilde degiþtirin---------------------
+
+        this.canvas = canvas;
+        canvas.scale(getWidth() / 1080f, getHeight() / 1920f);
+        rehberResimCiz();
+
+----------------------------------------------------------------------------------------
+
+--2)------------------------touchUp() icerisini bu sekilde degiþtirin---------------------
+
+       if(x <= root.xOranla(200) && y <= root.yOranla(160)){   // Çýkýþ için touchUp alaný
+            //oyuna gecis kýsmý
+            MenuCanvas mc = new MenuCanvas(root);
+            root.canvasManager.setCurrentCanvas(mc);
+        }
+
+----------------------------------------------------------------------------------------
+
+		            ***HakkimizdeKanvas***
+
+--1)---------------------------draw() icerisini bu sekilde degiþtirin---------------------
+
+	this.canvas = canvas;
+        canvas.scale(getWidth() / 1080f, getHeight() / 1920f);
+        hakkimizdaResimCiz();
+
+----------------------------------------------------------------------------------------
+
+
+--2)------------------------touchUp() icerisini bu sekilde degiþtirin---------------------
+
+        if(x <= root.xOranla(200) && y <= root.yOranla(160)){   // Çýkýþ için touchUp alaný
+            //oyuna gecis kýsmý
+            MenuCanvas mc = new MenuCanvas(root);
+            root.canvasManager.setCurrentCanvas(mc);
+        }
+----------------------------------------------------------------------------------------
+

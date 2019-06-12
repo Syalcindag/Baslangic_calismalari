@@ -1,0 +1,62 @@
+    private Bitmap slotOzellikCerceve, slotOzellikCan, slotOzellikHiz, slotOzellikGuc;                                                                //BYSEFA
+    private int slotBayrak;
+    private boolean acikMiOzellik = true;
+
+
+------------------------------------------------------------------
+setup
+ slotOzellikCerceve = Utils.loadImage(root, "gemi_ozellik_arkaplan.png");            //BYSEFA
+        slotOzellikCan = Utils.loadImage(root, "can_icon.png");
+        slotOzellikHiz = Utils.loadImage(root, "hedef_icon");
+        slotOzellikGuc = Utils.loadImage(root, "dayaniklilik_icon.png");
+
+----------------------------------------------------------------------
+ private void slotOzellýkCiz() {                                                                  //BYSEFA
+        if(slotBayrak == 1) {
+            canvas.drawBitmap(slotOzellikCerceve, 0, 1528, null);
+            canvas.drawBitmap(slotOzellikCan, 22, 1558, null);
+            canvas.drawText("20", 80, 1600, renk);
+            canvas.drawBitmap(slotOzellikHiz, 22, 1600, null);
+
+        }
+        if(slotBayrak == 2) {
+            canvas.drawBitmap(slotOzellikCerceve, 276, 1528, null);
+        }
+        if(slotBayrak == 3) {
+            canvas.drawBitmap(slotOzellikCerceve, 530, 1528, null);
+        }
+        if(slotBayrak == 4) {
+            canvas.drawBitmap(slotOzellikCerceve, 740, 1528, null);
+        }
+
+    }
+---------------------------------------------------------------------
+ private void slotGemiOzellikKontrol(int x, int y) {                                                              //BYSEFA
+        if (x > 15 && x < 130 && y > 1800 && y < 1900) {
+          //slotOzellikUret(0);
+          slotBayrak = 1;
+
+        }
+
+        if (x > 280 && x < 395 && y > 1800 && y < 1900 && toplamPara >= gemiFiyat[1]) {
+                slotBayrak = 2;
+        }
+
+        if (x > 550 && x < 665 && y > 1700 && y < 1900 && toplamPara >= gemiFiyat[2]) {
+                slotBayrak = 3;
+        }
+
+        if (x > 820 && x < 935 && y > 1700 && y < 1900 && toplamPara >= gemiFiyat[3]) {
+            slotBayrak = 4;
+        }
+    }
+
+    private void slotOzellikUret(int gemiTuru) {
+            if(gemiTuru == 0){
+
+            }
+    }
+------------------------------------------------------------------------------------------
+touchup
+slotGemiOzellikKontrol(x, y);                                                     //BYSEFA
+slotGemiOzellikKontrol(x, y);                                                     //BYSEFA

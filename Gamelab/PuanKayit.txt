@@ -1,0 +1,84 @@
+[09:53, 10.11.2018] +90 506 423 70 74: //patlama ile ilgili indexler
+    private static final int X_MERKEZ_P = 0, Y_MERKEZ_P = 1, AKS_PATLAMA = 2;
+[09:54, 10.11.2018] +90 506 423 70 74: //region Patlama efekti
+    private Bitmap patlamaEfekti;
+    private Vector<Vector<Integer>> patlamalar = new Vector<Vector<Integer>>();
+    private Rect patlamaKareleri[] = new Rect[16];
+    //endregion
+[09:54, 10.11.2018] +90 506 423 70 74: private void patlamaUret(Vector<Integer> gemi) {
+        Vector<Integer> olusanPatlama = new Vector<>();
+        int x = gemi.get(GEMIOZELLIGI_POSX);
+        int y = gemi.get(GEMIOZELLIGI_POSY);
+        olusanPatlama.add(x);                       //X_MERKEZ_P = 0  x merkez noktası
+        olusanPatlama.add(y);                       //Y_MERKEZ_P = 1  y merkez noktası
+        olusanPatlama.add(0);                       //AKS_PATLAMA = 2 animasyon karesi. başlangıç = 0
+        patlamalar.add(olusanPatlama);
+    }
+[09:55, 10.11.2018] +90 506 423 70 74: private void patlamalariCiz() {
+        for (pc_i = 0; pc_i < patlamalar.size(); pc_i++) {
+            Rect patlamaKonumu = new Rect(patlamalar.get(pc_i).get(X_MERKEZ_P) - 256 / 2, patlamalar.get(pc_i).get(Y_MERKEZ_P) - 256 / 2,
+                    patlamalar.get(pc_i).get(X_MERKEZ_P) + 256 / 2, patlamalar.get(pc_i).get(Y_MERKEZ_P) + 256 / 2);
+
+            canvas.drawBitmap(patlamaEfekti, patlamaKareleri[patlamalar.get(pc_i).get(AKS_PATLAMA)], patlamaKonumu, null);
+
+            if (patlamalar.get(pc_i).get(AKS_PATLAMA) < patlamaKareleri.length - 1) {
+                patlamalar.get(pc_i).set(AKS_PATLAMA, patlamalar.get(pc_i).get(AKS_PATLAMA) + 1);
+            } else patlamalar.remove(pc_i);
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	    NgMediaPlayer menu_muzik;
+    NgMediaPlayer oyunici_muzik;
+    boolean ses_acikmi;
+    NgaEncryptedPreferences kayit;
+    SoundManager oyunici_ses_efektleri;
+	
+	setup
+	        kayit = new NgaEncryptedPreferences(this);
+        kayit.initialize("password");
+		
+		gamecanvas
+		
+		                if (root.kayit.getLong("enyuksekpuan", 0L) < (long)puanlama)
+                    root.kayit.putLong("enyuksekpuan", (long)puanlama);
+					
+					
+					puanlama canvas
+					
+					        canvas.drawText("EN YÜKSEK PUAN" , getWidthHalf(), getHeightHalf(), paintBaslik);
+        canvas.drawText(root.kayit.getLong("enyuksekpuan", 0L) + "", getWidthHalf(), getHeightHalf() + 120, paintBaslik);
+		
+		        paintBaslik = new Paint();
+        paintBaslik.setTextAlign(Paint.Align.CENTER);
+        paintBaslik.setTextSize(100);
+        paintBaslik.setARGB(255, 255, 215, 0);
+	
+	
+	
+	
